@@ -62,7 +62,7 @@ Assets/
 |------|------|
 | Read requirements | 30 minutes |
 | Project setup | 1 hour |
-| Implement Clock | x |
+| Implement Clock | 2 hours |
 | Implement Timer | x |
 | Implement Stopwatch | x |
 | Create Tests | x |
