@@ -1,0 +1,16 @@
+{
+    "name": "StopWatch",
+    "rootNamespace": "",
+    "references": [
+        "GUID:40d9df5f5cc7e4640a2f73c10143152c"
+    ],
+    "includePlatforms": [],
+    "excludePlatforms": [],
+    "allowUnsafeCode": false,
+    "overrideReferences": false,
+    "precompiledReferences": [],
+    "autoReferenced": true,
+    "defineConstraints": [],
+    "versionDefines": [],
+    "noEngineReferences": false
+}
