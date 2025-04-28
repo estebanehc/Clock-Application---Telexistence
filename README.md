@@ -12,6 +12,39 @@ Designed with a clean architecture to allow easy future integration and maintain
 - **Reactive Programming:** UniRx
 - **Testing:** NUnit and Unity Test Framework (Edit Mode and Play Mode tests)
 
+## Project Structure Philosophy
+The project follows a modular feature-based structure, dividing the core elements into Domain, Application, and Presentation layers for each feature.
+This structure ensures:
+
+- **Separation of concerns:** Each feature (Clock, Timer, Stopwatch) is isolated and self-contained
+- **Scalability:** New features can be added without interfering with existing modules
+- **Testability:** Each module has a dedicated Assembly Definition, enabling precise unit testing
+- **Maintainability:** Organized codebase allowing easy understanding and updates by future team members
+
+Each feature is structured as follows:
+
+- **Domain:** Contains pure data models and business states
+- **Application:** Implements services and use cases
+- **Presentation:** Manages UI elements and presentation logic
+
+This approach prepares the project for integration into larger, production-grade robotic operation systems.
+
+## Architecture Pattern Used
+The application implements the Model-View-Presenter (MVP) architectural pattern, adapted for reactive programming using UniRx.
+
+### Why MVP instead of MVC?
+
+- **Presenter** handles the presentation logic, reacting to model changes and updating the view
+- **View** remains passive, focusing only on displaying data and receiving user input
+- **Model** represents the pure data and states
+
+This separation:
+
+- Enhances testability (presenters can be tested without the actual UI)
+- Supports reactive data flows (critical when using UniRx)
+- Improves scalability and maintainability
+- Facilitates multi-platform adaptations (Windows, iOS/iPad, VR)
+
 ## Features
 - Display current time in user's timezone
 - Timer functionality with Start, Stop, Reset, and Pause. Plays a sound when finished
@@ -35,18 +68,36 @@ Designed with a clean architecture to allow easy future integration and maintain
 Assets/
     Scripts/
         Core/
+            Interfaces/
+            Common/
+        Features/
+            Clock/
+                Domain/
+                Application/
+                Presentation/
+            Timer/
+                Domain/
+                Application/
+                Presentation/
+            Stopwatch/
+                Domain/
+                Application/
+                Presentation/
+        Installer/
+    Tests/
+        Core/
         Features/
             Clock/
             Timer/
             Stopwatch/
-        Installer/
-    Tests/
+
 ```
 
 ## Requirements
 - Unity 2021.3.4f1 LTS
 - UniRx
 - Zenject
+- TextMeshPro (Recommended for advanced text rendering)
 
 ## Setup Instructions
 1. Clone the project
