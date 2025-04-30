@@ -6,5 +6,8 @@ public class ProjectInstaller : MonoInstaller
     {
         Container.Bind<IClockService>().To<ClockService>().AsSingle();
         Container.Bind<ClockModel>().AsSingle();
+
+        Container.Bind<ITimerService>().To<TimerService>().AsSingle();
+        Container.Bind<TimerModel>().AsSingle();
     }
 }
