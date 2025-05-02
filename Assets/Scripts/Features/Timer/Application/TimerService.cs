@@ -7,7 +7,7 @@ public class TimerService : ITimerService
     private readonly TimerModel timerModel;
     private TimeSpan initialDuration;
     private IDisposable timerDisposable;
-    private readonly Subject<Unit> finishedSubject = new Subject<Unit>();
+    private readonly Subject<Unit> finishedSubject = new();
 
     public IReadOnlyReactiveProperty<TimeSpan> RemainingTime => timerModel.RemainingTime;
     public IReadOnlyReactiveProperty<bool> IsRunning => timerModel.IsRunning;
@@ -67,5 +67,13 @@ public class TimerService : ITimerService
     {
         timerDisposable?.Dispose();
         timerModel.IsRunning.Value = false;
+    }
+
+    public void Dispose()
+    {
+        timerDisposable?.Dispose();
+        finishedSubject.Dispose();
+        timerModel.RemainingTime.Dispose();
+        timerModel.IsRunning.Dispose();
     }
 }

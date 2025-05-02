@@ -9,5 +9,8 @@ public class ProjectInstaller : MonoInstaller
 
         Container.Bind<ITimerService>().To<TimerService>().AsSingle();
         Container.Bind<TimerModel>().AsSingle();
+
+        Container.Bind<IStopwatchService>().To<StopwatchService>().AsSingle();
+        Container.Bind<StopwatchModel>().AsSingle();
     }
 }

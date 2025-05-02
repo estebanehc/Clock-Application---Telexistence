@@ -99,7 +99,7 @@ public class TimerPresenter : MonoBehaviour
 
     private void FinishedTimer()
     {
-        timerView.SetButtonsState(false, false, true);
+        timerView.SetButtonsState(true, false, true);
         timerView.SetPauseButtonLabel("Pause");
         timerView.SetDropdownsInteractable(true);
         if (audioSource != null && timerView.FinishedAudioClip != null)
