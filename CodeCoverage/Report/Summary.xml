@@ -1,21 +1,21 @@
 <?xml version="1.0" encoding="utf-8"?>
 <CoverageReport scope="Summary">
   <Summary>
-    <Generatedon>5/3/2025 - 1:09:21 PM</Generatedon>
+    <Generatedon>5/3/2025 - 5:18:57 PM</Generatedon>
     <Parser>MultiReportParser (4x OpenCoverParser)</Parser>
-    <Assemblies>6</Assemblies>
-    <Classes>13</Classes>
-    <Files>13</Files>
-    <Coveredlines>396</Coveredlines>
-    <Uncoveredlines>9</Uncoveredlines>
-    <Coverablelines>405</Coverablelines>
-    <Totallines>804</Totallines>
-    <Linecoverage>97.7</Linecoverage>
+    <Assemblies>9</Assemblies>
+    <Classes>20</Classes>
+    <Files>20</Files>
+    <Coveredlines>673</Coveredlines>
+    <Uncoveredlines>36</Uncoveredlines>
+    <Coverablelines>709</Coverablelines>
+    <Totallines>1344</Totallines>
+    <Linecoverage>94.9</Linecoverage>
     <Coveredbranches>0</Coveredbranches>
     <Totalbranches>0</Totalbranches>
-    <Coveredmethods>77</Coveredmethods>
-    <Totalmethods>78</Totalmethods>
-    <Methodcoverage>98.7</Methodcoverage>
+    <Coveredmethods>145</Coveredmethods>
+    <Totalmethods>154</Totalmethods>
+    <Methodcoverage>94.1</Methodcoverage>
   </Summary>
   <Coverage>
     <Assembly name="Clock" classes="4" coverage="96.4" coveredlines="27" coverablelines="28" totallines="72" branchcoverage="" coveredbranches="0" totalbranches="0" coveredmethods="9" totalmethods="9" methodcoverage="100">
@@ -30,6 +30,19 @@
     </Assembly>
     <Assembly name="ClockTestPlayMode" classes="1" coverage="100" coveredlines="12" coverablelines="12" totallines="35" branchcoverage="" coveredbranches="0" totalbranches="0" coveredmethods="1" totalmethods="1" methodcoverage="100">
       <Class name="ClockViewTest" coverage="100" coveredlines="12" coverablelines="12" totallines="35" branchcoverage="" coveredbranches="0" totalbranches="0" coveredmethods="1" totalmethods="1" methodcoverage="100" />
+    </Assembly>
+    <Assembly name="StopWatch" classes="4" coverage="85.4" coveredlines="117" coverablelines="137" totallines="236" branchcoverage="" coveredbranches="0" totalbranches="0" coveredmethods="24" totalmethods="30" methodcoverage="80">
+      <Class name="StopwatchModel" coverage="100" coveredlines="9" coverablelines="9" totallines="16" branchcoverage="" coveredbranches="0" totalbranches="0" coveredmethods="4" totalmethods="4" methodcoverage="100" />
+      <Class name="StopwatchPresenter" coverage="81.4" coveredlines="22" coverablelines="27" totallines="52" branchcoverage="" coveredbranches="0" totalbranches="0" coveredmethods="3" totalmethods="4" methodcoverage="75" />
+      <Class name="StopwatchService" coverage="90.2" coveredlines="37" coverablelines="41" totallines="69" branchcoverage="" coveredbranches="0" totalbranches="0" coveredmethods="9" totalmethods="9" methodcoverage="100" />
+      <Class name="StopwatchView" coverage="81.6" coveredlines="49" coverablelines="60" totallines="99" branchcoverage="" coveredbranches="0" totalbranches="0" coveredmethods="8" totalmethods="13" methodcoverage="61.5" />
+    </Assembly>
+    <Assembly name="StopwatchTest" classes="2" coverage="95.6" coveredlines="87" coverablelines="91" totallines="175" branchcoverage="" coveredbranches="0" totalbranches="0" coveredmethods="37" totalmethods="39" methodcoverage="94.8">
+      <Class name="StopwatchPresenterTest" coverage="95.5" coveredlines="43" coverablelines="45" totallines="86" branchcoverage="" coveredbranches="0" totalbranches="0" coveredmethods="29" totalmethods="31" methodcoverage="93.5" />
+      <Class name="StopwatchServiceTest" coverage="95.6" coveredlines="44" coverablelines="46" totallines="89" branchcoverage="" coveredbranches="0" totalbranches="0" coveredmethods="8" totalmethods="8" methodcoverage="100" />
+    </Assembly>
+    <Assembly name="StopwatchTestPlayMode" classes="1" coverage="96" coveredlines="73" coverablelines="76" totallines="129" branchcoverage="" coveredbranches="0" totalbranches="0" coveredmethods="7" totalmethods="7" methodcoverage="100">
+      <Class name="StopwatchViewTest" coverage="96" coveredlines="73" coverablelines="76" totallines="129" branchcoverage="" coveredbranches="0" totalbranches="0" coveredmethods="7" totalmethods="7" methodcoverage="100" />
     </Assembly>
     <Assembly name="Timer" classes="4" coverage="95.3" coveredlines="164" coverablelines="172" totallines="301" branchcoverage="" coveredbranches="0" totalbranches="0" coveredmethods="37" totalmethods="38" methodcoverage="97.3">
       <Class name="TimerModel" coverage="100" coveredlines="7" coverablelines="7" totallines="14" branchcoverage="" coveredbranches="0" totalbranches="0" coveredmethods="3" totalmethods="3" methodcoverage="100" />

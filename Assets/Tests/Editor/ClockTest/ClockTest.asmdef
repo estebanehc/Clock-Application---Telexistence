@@ -7,8 +7,7 @@
         "Core",
         "Clock",
         "UniRx",
-        "Zenject",
-        ""
+        "Zenject"
     ],
     "includePlatforms": [
         "Editor"
