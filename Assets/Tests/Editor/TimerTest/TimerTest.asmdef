@@ -6,7 +6,8 @@
         "UnityEditor.TestRunner",
         "Core",
         "Timer",
-        "UniRx"
+        "UniRx",
+        "Zenject"
     ],
     "includePlatforms": [
         "Editor"

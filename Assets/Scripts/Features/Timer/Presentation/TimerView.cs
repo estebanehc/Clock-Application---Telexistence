@@ -4,7 +4,7 @@ using UniRx;
 using UnityEngine.UI;
 using TMPro;
 
-public class TimerView : MonoBehaviour
+public class TimerView : MonoBehaviour, ITimerView
 {
     [SerializeField] private TextMeshProUGUI remainingTimeText;
     [SerializeField] private TMP_Dropdown hoursDropdown;
@@ -14,8 +14,7 @@ public class TimerView : MonoBehaviour
     [SerializeField] private Button pauseButton;
     [SerializeField] private Button resetButton;
 
-    [Header("Audio")]
-    [SerializeField] private AudioClip finishedAudioClip;
+    private AudioSource audioSource;
 
     public IObservable<int> OnHoursChanged => hoursDropdown.onValueChanged.AsObservable();
     public IObservable<int> OnMinutesChanged => minutesDropdown.onValueChanged.AsObservable();
@@ -30,8 +29,9 @@ public class TimerView : MonoBehaviour
     public IObservable<Unit> ResetButtonClicked => resetButton.OnClickAsObservable();
 
 
-    private void Start()
+    public void Start()
     {
+        audioSource = GetComponent<AudioSource>();
         InitializeDropdowns();
     }
     public void InitializeDropdowns()
@@ -61,6 +61,11 @@ public class TimerView : MonoBehaviour
         remainingTimeText.text = $"{time.Hours:D2}:{time.Minutes:D2}:{time.Seconds:D2}";
     }
 
+    public void PlayFinishedSound()
+    {
+        audioSource.PlayOneShot(audioSource.clip);
+    }
+
     public void SetButtonsState(bool start, bool pause, bool reset)
     {
         startButton.interactable = start;
@@ -79,6 +84,4 @@ public class TimerView : MonoBehaviour
     {
         pauseButton.GetComponentInChildren<TextMeshProUGUI>().text = label;
     }
-
-    public AudioClip FinishedAudioClip => finishedAudioClip;
 }

@@ -5,6 +5,7 @@ public class ProjectInstaller : MonoInstaller
 {
     [SerializeField] private StopwatchView stopwatchView;
     [SerializeField] private ClockView clockView;
+    [SerializeField] private TimerView timerView;
 
     public override void InstallBindings()
     {
@@ -23,8 +24,21 @@ public class ProjectInstaller : MonoInstaller
         Container.Bind<ClockModel>()
             .AsSingle();
 
-        Container.Bind<ITimerService>().To<TimerService>().AsSingle();
-        Container.Bind<TimerModel>().AsSingle();
+        Container.Bind<ITimerView>()
+            .To<TimerView>()
+            .FromInstance(timerView)
+            .AsSingle();
+        
+        Container.Bind<TimerPresenter>()
+            .AsSingle()
+            .NonLazy();
+
+        Container.Bind<ITimerService>()
+            .To<TimerService>()
+            .AsSingle();
+
+        Container.Bind<TimerModel>()
+            .AsSingle();
 
         Container.Bind<IStopwatchView>()
             .FromInstance(stopwatchView)
