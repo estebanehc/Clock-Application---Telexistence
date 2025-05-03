@@ -1,0 +1,36 @@
+{
+  "summary": {
+    "generatedon": "2025-04-30T23:24:34Z",
+    "parser": "MultiReportParser (4x OpenCoverParser)",
+    "assemblies": 4,
+    "classes": 10,
+    "files": 10,
+    "coveredlines": 306,
+    "uncoveredlines": 23,
+    "coverablelines": 329,
+    "totallines": 641,
+    "linecoverage": 93,
+    "coveredbranches": 0,
+    "totalbranches": 0,
+    "coveredmethods": 53,
+    "totalmethods": 61,
+    "methodcoverage": 86.8
+ },
+  "coverage": {
+    "assemblies": [
+      { "name": "Clock", "classes": 4, "coverage": 8.6, "coveredlines": 2, "coverablelines": 23, "totallines": 69, "branchcoverage": null, "coveredbranches": 0, "totalbranches": 0, "methodcoverage": 20, "coveredmethods": 2, "totalmethods": 10, "classesinassembly": [
+        { "name": "ClockModel", "coverage": 0, "coveredlines": 0, "coverablelines": 5, "totallines": 15, "branchcoverage": null, "coveredbranches": 0, "totalbranches": 0, "methodcoverage": 0, "coveredmethods": 0, "totalmethods": 3 },
+        { "name": "ClockPresenter", "coverage": 6.2, "coveredlines": 1, "coverablelines": 16, "totallines": 39, "branchcoverage": null, "coveredbranches": 0, "totalbranches": 0, "methodcoverage": 20, "coveredmethods": 1, "totalmethods": 5 },
+        { "name": "ClockService", "coverage": 100, "coveredlines": 1, "coverablelines": 1, "totallines": 6, "branchcoverage": null, "coveredbranches": 0, "totalbranches": 0, "methodcoverage": 100, "coveredmethods": 1, "totalmethods": 1 },
+        { "name": "ClockView", "coverage": 0, "coveredlines": 0, "coverablelines": 1, "totallines": 9, "branchcoverage": null, "coveredbranches": 0, "totalbranches": 0, "methodcoverage": 0, "coveredmethods": 0, "totalmethods": 1 } ] },
+      { "name": "Timer", "classes": 4, "coverage": 98.7, "coveredlines": 164, "coverablelines": 166, "totallines": 293, "branchcoverage": null, "coveredbranches": 0, "totalbranches": 0, "methodcoverage": 100, "coveredmethods": 37, "totalmethods": 37, "classesinassembly": [
+        { "name": "TimerModel", "coverage": 100, "coveredlines": 7, "coverablelines": 7, "totallines": 14, "branchcoverage": null, "coveredbranches": 0, "totalbranches": 0, "methodcoverage": 100, "coveredmethods": 3, "totalmethods": 3 },
+        { "name": "TimerPresenter", "coverage": 100, "coveredlines": 70, "coverablelines": 70, "totallines": 124, "branchcoverage": null, "coveredbranches": 0, "totalbranches": 0, "methodcoverage": 100, "coveredmethods": 9, "totalmethods": 9 },
+        { "name": "TimerService", "coverage": 95.3, "coveredlines": 41, "coverablelines": 43, "totallines": 71, "branchcoverage": null, "coveredbranches": 0, "totalbranches": 0, "methodcoverage": 100, "coveredmethods": 9, "totalmethods": 9 },
+        { "name": "TimerView", "coverage": 100, "coveredlines": 46, "coverablelines": 46, "totallines": 84, "branchcoverage": null, "coveredbranches": 0, "totalbranches": 0, "methodcoverage": 100, "coveredmethods": 16, "totalmethods": 16 } ] },
+      { "name": "TimerTest", "classes": 1, "coverage": 100, "coveredlines": 35, "coverablelines": 35, "totallines": 68, "branchcoverage": null, "coveredbranches": 0, "totalbranches": 0, "methodcoverage": 100, "coveredmethods": 6, "totalmethods": 6, "classesinassembly": [
+        { "name": "TimerServiceTests", "coverage": 100, "coveredlines": 35, "coverablelines": 35, "totallines": 68, "branchcoverage": null, "coveredbranches": 0, "totalbranches": 0, "methodcoverage": 100, "coveredmethods": 6, "totalmethods": 6 } ] },
+      { "name": "TimerTestPlayMode", "classes": 1, "coverage": 100, "coveredlines": 105, "coverablelines": 105, "totallines": 211, "branchcoverage": null, "coveredbranches": 0, "totalbranches": 0, "methodcoverage": 100, "coveredmethods": 8, "totalmethods": 8, "classesinassembly": [
+        { "name": "TimerPlayModeTests", "coverage": 100, "coveredlines": 105, "coverablelines": 105, "totallines": 211, "branchcoverage": null, "coveredbranches": 0, "totalbranches": 0, "methodcoverage": 100, "coveredmethods": 8, "totalmethods": 8 } ] } ]
+  }
+}

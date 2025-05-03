@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<coverage version="1.0" date="2025-05-01_07-25-29" tag="">
+  <assembly name="Clock">
+    <class name="ClockModel" coveredlines="0" coverablelines="5" totallines="15" coveredbranches="0" totalbranches="0" />
+    <class name="ClockPresenter" coveredlines="0" coverablelines="16" totallines="39" coveredbranches="0" totalbranches="0" />
+    <class name="ClockService" coveredlines="0" coverablelines="1" totallines="6" coveredbranches="0" totalbranches="0" />
+    <class name="ClockView" coveredlines="0" coverablelines="1" totallines="9" coveredbranches="0" totalbranches="0" />
+  </assembly>
+  <assembly name="Timer">
+    <class name="TimerModel" coveredlines="7" coverablelines="7" totallines="14" coveredbranches="0" totalbranches="0" />
+    <class name="TimerPresenter" coveredlines="44" coverablelines="70" totallines="124" coveredbranches="0" totalbranches="0" />
+    <class name="TimerService" coveredlines="32" coverablelines="43" totallines="71" coveredbranches="0" totalbranches="0" />
+    <class name="TimerView" coveredlines="46" coverablelines="46" totallines="84" coveredbranches="0" totalbranches="0" />
+  </assembly>
+  <assembly name="TimerTest">
+    <class name="TimerServiceTests" coveredlines="0" coverablelines="35" totallines="68" coveredbranches="0" totalbranches="0" />
+  </assembly>
+  <assembly name="TimerTestPlayMode">
+    <class name="TimerPlayModeTests" coveredlines="60" coverablelines="60" totallines="116" coveredbranches="0" totalbranches="0" />
+  </assembly>
+</coverage>

@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="utf-8"?>
+<CoverageReport scope="Summary">
+  <Summary>
+    <Generatedon>5/1/2025 - 8:24:34 AM</Generatedon>
+    <Parser>MultiReportParser (4x OpenCoverParser)</Parser>
+    <Assemblies>4</Assemblies>
+    <Classes>10</Classes>
+    <Files>10</Files>
+    <Coveredlines>306</Coveredlines>
+    <Uncoveredlines>23</Uncoveredlines>
+    <Coverablelines>329</Coverablelines>
+    <Totallines>641</Totallines>
+    <Linecoverage>93</Linecoverage>
+    <Coveredbranches>0</Coveredbranches>
+    <Totalbranches>0</Totalbranches>
+    <Coveredmethods>53</Coveredmethods>
+    <Totalmethods>61</Totalmethods>
+    <Methodcoverage>86.8</Methodcoverage>
+  </Summary>
+  <Coverage>
+    <Assembly name="Clock" classes="4" coverage="8.6" coveredlines="2" coverablelines="23" totallines="69" branchcoverage="" coveredbranches="0" totalbranches="0" coveredmethods="2" totalmethods="10" methodcoverage="20">
+      <Class name="ClockModel" coverage="0" coveredlines="0" coverablelines="5" totallines="15" branchcoverage="" coveredbranches="0" totalbranches="0" coveredmethods="0" totalmethods="3" methodcoverage="0" />
+      <Class name="ClockPresenter" coverage="6.2" coveredlines="1" coverablelines="16" totallines="39" branchcoverage="" coveredbranches="0" totalbranches="0" coveredmethods="1" totalmethods="5" methodcoverage="20" />
+      <Class name="ClockService" coverage="100" coveredlines="1" coverablelines="1" totallines="6" branchcoverage="" coveredbranches="0" totalbranches="0" coveredmethods="1" totalmethods="1" methodcoverage="100" />
+      <Class name="ClockView" coverage="0" coveredlines="0" coverablelines="1" totallines="9" branchcoverage="" coveredbranches="0" totalbranches="0" coveredmethods="0" totalmethods="1" methodcoverage="0" />
+    </Assembly>
+    <Assembly name="Timer" classes="4" coverage="98.7" coveredlines="164" coverablelines="166" totallines="293" branchcoverage="" coveredbranches="0" totalbranches="0" coveredmethods="37" totalmethods="37" methodcoverage="100">
+      <Class name="TimerModel" coverage="100" coveredlines="7" coverablelines="7" totallines="14" branchcoverage="" coveredbranches="0" totalbranches="0" coveredmethods="3" totalmethods="3" methodcoverage="100" />
+      <Class name="TimerPresenter" coverage="100" coveredlines="70" coverablelines="70" totallines="124" branchcoverage="" coveredbranches="0" totalbranches="0" coveredmethods="9" totalmethods="9" methodcoverage="100" />
+      <Class name="TimerService" coverage="95.3" coveredlines="41" coverablelines="43" totallines="71" branchcoverage="" coveredbranches="0" totalbranches="0" coveredmethods="9" totalmethods="9" methodcoverage="100" />
+      <Class name="TimerView" coverage="100" coveredlines="46" coverablelines="46" totallines="84" branchcoverage="" coveredbranches="0" totalbranches="0" coveredmethods="16" totalmethods="16" methodcoverage="100" />
+    </Assembly>
+    <Assembly name="TimerTest" classes="1" coverage="100" coveredlines="35" coverablelines="35" totallines="68" branchcoverage="" coveredbranches="0" totalbranches="0" coveredmethods="6" totalmethods="6" methodcoverage="100">
+      <Class name="TimerServiceTests" coverage="100" coveredlines="35" coverablelines="35" totallines="68" branchcoverage="" coveredbranches="0" totalbranches="0" coveredmethods="6" totalmethods="6" methodcoverage="100" />
+    </Assembly>
+    <Assembly name="TimerTestPlayMode" classes="1" coverage="100" coveredlines="105" coverablelines="105" totallines="211" branchcoverage="" coveredbranches="0" totalbranches="0" coveredmethods="8" totalmethods="8" methodcoverage="100">
+      <Class name="TimerPlayModeTests" coverage="100" coveredlines="105" coverablelines="105" totallines="211" branchcoverage="" coveredbranches="0" totalbranches="0" coveredmethods="8" totalmethods="8" methodcoverage="100" />
+    </Assembly>
+  </Coverage>
+</CoverageReport>
