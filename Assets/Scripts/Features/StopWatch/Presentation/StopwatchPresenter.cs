@@ -1,126 +1,51 @@
-using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
-using Zenject;
 using UniRx;
+using System;
 
-public class StopwatchPresenter : MonoBehaviour
+public class StopwatchPresenter : IDisposable
 {
-    private StopwatchView stopwatchView;
-    private IStopwatchService stopwatchService;
-    private CompositeDisposable disposables = new();
+    private readonly IStopwatchService stopwatchService;
+    private readonly IStopwatchView stopwatchView;
+    private readonly CompositeDisposable disposables = new();
 
-    private int lapCount = 0;
-    private bool isPaused = false;
-
-    [Inject]
-    public void Construct(IStopwatchService stopwatchService)
+    public StopwatchPresenter(IStopwatchService stopwatchService, IStopwatchView stopwatchView)
     {
         this.stopwatchService = stopwatchService;
+        this.stopwatchView = stopwatchView;
+
+        BindView();
+        BindService();
     }
 
-    void Start()
+    private void BindView()
     {
-        stopwatchView = GetComponent<StopwatchView>();
-        stopwatchView.SetElapsedTime("00:00:00");
-        stopwatchView.SetButtonState(true, false, false, false);
-        stopwatchView.ClearLapList();
-        stopwatchView.SetPauseResumeLabel("Pause");
+        stopwatchView.OnStartClicked.Subscribe(_ => stopwatchService.Start()).AddTo(disposables);
+        stopwatchView.OnStopClicked.Subscribe(_ => stopwatchService.Pause()).AddTo(disposables);
+        stopwatchView.OnResetClicked.Subscribe(_ => stopwatchService.Reset()).AddTo(disposables);
+        stopwatchView.OnLapClicked.Subscribe(_ => stopwatchService.Lap()).AddTo(disposables);
+    }
 
-        stopwatchView.OnStartButtonClicked
-            .Subscribe(_ => StartStopwatch())
-            .AddTo(disposables);
-
-        stopwatchView.OnPauseButtonClicked
-            .Subscribe(_ =>
-            {
-                if (isPaused)
-                {
-                    ResumeStopwatch();
-                }
-                else
-                {
-                    PauseStopwatch();
-                }
-            })
-            .AddTo(disposables);
-
-        stopwatchView.OnResetButtonClicked
-            .Subscribe(_ => ResetStopwatch())
-            .AddTo(disposables);
-
-        stopwatchView.OnLapButtonClicked
-            .Subscribe(_ =>
-            {
-                if (stopwatchService.IsRunning.Value)
-                {
-                    stopwatchService.Lap();
-                }
-            })
-            .AddTo(disposables);
-
+    private void BindService()
+    {
         stopwatchService.ElapsedTime
-            .Subscribe(time =>
-            {
-                stopwatchView.SetElapsedTime(time.ToString(@"hh\:mm\:ss"));
-            })
+            .Subscribe(time => stopwatchView.SetElapsedTime(time))
+            .AddTo(disposables);
+
+        stopwatchService.IsRunning
+            .Subscribe(isRunning => stopwatchView.SetRunningState(isRunning))
             .AddTo(disposables);
 
         stopwatchService.Laps
             .ObserveAdd()
-            .Subscribe(lap =>
-            {
-                LapStopwatch();
-            })
+            .Subscribe(addEvent => stopwatchView.AddLap(addEvent.Value))
             .AddTo(disposables);
 
+        stopwatchService.Laps
+            .ObserveReset()
+            .Subscribe(_ => stopwatchView.ClearLaps())
+            .AddTo(disposables);
     }
 
-    private void StartStopwatch()
-    {
-        stopwatchService.Start();
-        lapCount = 0;
-        stopwatchView.SetButtonState(false, true, true, true);
-        stopwatchView.SetPauseResumeLabel("Pause");
-        isPaused = false;
-    }
-
-    private void PauseStopwatch()
-    {
-        stopwatchService.Pause();
-        stopwatchView.SetButtonState(true, false, true, true);
-        stopwatchView.SetPauseResumeLabel("Resume");
-        isPaused = true;
-    }
-
-    private void ResumeStopwatch()
-    {
-        stopwatchService.Resume();
-        stopwatchView.SetButtonState(false, true, true, true);
-        stopwatchView.SetPauseResumeLabel("Pause");
-        isPaused = false;
-    }
-
-    private void ResetStopwatch()
-    {
-        stopwatchService.Reset();
-        stopwatchView.SetElapsedTime("00:00:00");
-        stopwatchView.ClearLapList();
-        lapCount = 0;
-        stopwatchView.SetButtonState(true, false, false, false);
-        stopwatchView.SetPauseResumeLabel("Pause");
-        isPaused = false;
-    }
-
-    private void LapStopwatch()
-    {
-        lapCount++;
-        stopwatchView.AddLapItem(
-            $"Lap {lapCount}: {stopwatchService.ElapsedTime.Value.ToString(@"hh\:mm\:ss")}"
-            );
-    }
-    
-    private void OnDestroy()
+    public void Dispose()
     {
         disposables.Dispose();
     }

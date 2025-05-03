@@ -1,55 +1,82 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 using TMPro;
 using UniRx;
 using UnityEngine.UI;
 using System;
 
-public class StopwatchView : MonoBehaviour
+public class StopwatchView : MonoBehaviour, IStopwatchView
 {
-    [SerializeField] private TextMeshProUGUI elapsedTimeText;
+    [SerializeField] private TextMeshProUGUI timeLabel;
     [SerializeField] private Button startButton;
-    [SerializeField] private Button pauseButton;
+    [SerializeField] private Button stopButton;
     [SerializeField] private Button resetButton;
     [SerializeField] private Button lapButton;
-    [SerializeField] private Transform lapListContainer;
-    [SerializeField] private GameObject lapItemPrefab;
+    [SerializeField] private Transform lapsContainer;
+    [SerializeField] private GameObject lapTextPrefab;
 
-    public IObservable<Unit> OnStartButtonClicked => startButton.OnClickAsObservable();
-    public IObservable<Unit> OnPauseButtonClicked => pauseButton.OnClickAsObservable();
-    public IObservable<Unit> OnResetButtonClicked => resetButton.OnClickAsObservable();
-    public IObservable<Unit> OnLapButtonClicked => lapButton.OnClickAsObservable();
+    private readonly Subject<Unit> onStartClicked = new();
+    private readonly Subject<Unit> onStopClicked = new();
+    private readonly Subject<Unit> onResetClicked = new();
+    private readonly Subject<Unit> onLapClicked = new();
 
-    public void SetElapsedTime(string time)
+    public IObservable<Unit> OnStartClicked => onStartClicked;
+    public IObservable<Unit> OnStopClicked => onStopClicked;
+    public IObservable<Unit> OnResetClicked => onResetClicked;
+    public IObservable<Unit> OnLapClicked => onLapClicked;
+
+    private void Awake()
     {
-        elapsedTimeText.text = time;
+        startButton.onClick.AddListener(() => onStartClicked.OnNext(Unit.Default));
+        stopButton.onClick.AddListener(() => onStopClicked.OnNext(Unit.Default));
+        resetButton.onClick.AddListener(() => onResetClicked.OnNext(Unit.Default));
+        lapButton.onClick.AddListener(() => onLapClicked.OnNext(Unit.Default));
     }
 
-    public void SetButtonState(bool start, bool pause, bool reset, bool lap)
+    public void SetElapsedTime(TimeSpan time)
     {
-        startButton.interactable = start;
-        pauseButton.interactable = pause;
-        resetButton.interactable = reset;
-        lapButton.interactable = lap;
+        timeLabel.text = FormatTime(time);
     }
 
-    public void SetPauseResumeLabel(string label)
+    public void SetRunningState(bool isRunning)
     {
-        pauseButton.GetComponentInChildren<TextMeshProUGUI>().text = label;
+        startButton.gameObject.SetActive(!isRunning);
+        stopButton.gameObject.SetActive(isRunning);
+
+        lapButton.interactable = isRunning;
+        resetButton.interactable = !isRunning && timeLabel.text != "00:00.000";
     }
 
-    public void ClearLapList()
+    private int lapCount = 0;
+
+    public void AddLap(TimeSpan lapTime)
     {
-        foreach (Transform child in lapListContainer)
+        lapCount++;
+        var lapGO = Instantiate(lapTextPrefab, lapsContainer);
+        if (lapGO.TryGetComponent<TextMeshProUGUI>(out var label))
+        {
+            label.text = $"Lap {lapCount}: {FormatTime(lapTime)}";
+        }
+        lapGO.transform.SetSiblingIndex(0);
+    }
+
+    public void ClearLaps()
+    {
+        foreach (Transform child in lapsContainer)
         {
             Destroy(child.gameObject);
         }
     }
 
-    public void AddLapItem(string lapTime)
+    private string FormatTime(TimeSpan time)
     {
-        var lapItem = Instantiate(lapItemPrefab, lapListContainer);
-        lapItem.GetComponentInChildren<TextMeshProUGUI>().text = lapTime;
+        return $"{time.Minutes:D2}:{time.Seconds:D2}.{time.Milliseconds:D3}";
+    }
+
+    private void OnDestroy()
+    {
+        onStartClicked.Dispose();
+        onStopClicked.Dispose();
+        onResetClicked.Dispose();
+        onLapClicked.Dispose();
     }
 }

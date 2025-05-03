@@ -1,15 +1,13 @@
 using System;
-using System.Collections;
-using System.Collections.Generic;
 using UniRx;
-using UnityEngine;
 using Zenject;
 
 public class StopwatchService : IStopwatchService
 {
     private readonly StopwatchModel stopwatchModel;
     private IDisposable timerSubscription;
-    private  TimeSpan currentTime = TimeSpan.Zero;
+    private DateTime startTime;
+    private  TimeSpan pausedTime = TimeSpan.Zero;
 
     public IReadOnlyReactiveProperty<TimeSpan> ElapsedTime => stopwatchModel.ElapsedTime;
     public IReadOnlyReactiveCollection<TimeSpan> Laps => stopwatchModel.Laps;
@@ -23,59 +21,42 @@ public class StopwatchService : IStopwatchService
 
     public void Start()
     {
-        if (stopwatchModel.IsRunning.Value)
-            return;
+        if (IsRunning.Value) return;
 
         stopwatchModel.IsRunning.Value = true;
+        startTime = DateTime.Now;
+
         timerSubscription = Observable
-            .Timer(TimeSpan.Zero, TimeSpan.FromSeconds(1))
+            .Interval(TimeSpan.FromMilliseconds(10))
             .Subscribe(_ =>
             {
-                currentTime += TimeSpan.FromSeconds(1);
-                stopwatchModel.ElapsedTime.Value = currentTime;
+                var current = DateTime.Now - startTime + pausedTime;
+                stopwatchModel.ElapsedTime.Value = current;
             });
     }
 
     public void Pause()
     {
-        if (!stopwatchModel.IsRunning.Value)
-            return;
+        if (!IsRunning.Value) return;
 
         stopwatchModel.IsRunning.Value = false;
+        pausedTime = stopwatchModel.ElapsedTime.Value;
         timerSubscription?.Dispose();
-    }
-
-    public void Lap()
-    {
-        if (!stopwatchModel.IsRunning.Value)
-            return;
-
-        stopwatchModel.Laps.Insert(0, currentTime);
-        currentTime = TimeSpan.Zero;
     }
 
     public void Reset()
     {
         stopwatchModel.IsRunning.Value = false;
         stopwatchModel.ElapsedTime.Value = TimeSpan.Zero;
-        currentTime = TimeSpan.Zero;
+        pausedTime = TimeSpan.Zero;
         stopwatchModel.Laps.Clear();
         timerSubscription?.Dispose();
     }
 
-    public void Resume()
+    public void Lap()
     {
-        if (stopwatchModel.IsRunning.Value)
-            return;
-
-        stopwatchModel.IsRunning.Value = true;
-        timerSubscription = Observable
-            .Timer(TimeSpan.Zero, TimeSpan.FromSeconds(1))
-            .Subscribe(_ =>
-            {
-                currentTime += TimeSpan.FromSeconds(1);
-                stopwatchModel.ElapsedTime.Value = currentTime;
-            });
+        if (!IsRunning.Value)return;
+        stopwatchModel.Laps.Insert(0, stopwatchModel.ElapsedTime.Value);
     }
 
     public void Dispose()

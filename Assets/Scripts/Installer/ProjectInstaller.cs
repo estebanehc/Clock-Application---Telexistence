@@ -1,7 +1,10 @@
+using UnityEngine;
 using Zenject;
 
 public class ProjectInstaller : MonoInstaller
 {
+    [SerializeField] private StopwatchView stopwatchView;
+
     public override void InstallBindings()
     {
         Container.Bind<IClockService>().To<ClockService>().AsSingle();
@@ -10,7 +13,19 @@ public class ProjectInstaller : MonoInstaller
         Container.Bind<ITimerService>().To<TimerService>().AsSingle();
         Container.Bind<TimerModel>().AsSingle();
 
-        Container.Bind<IStopwatchService>().To<StopwatchService>().AsSingle();
-        Container.Bind<StopwatchModel>().AsSingle();
+        Container.Bind<IStopwatchView>()
+            .FromInstance(stopwatchView)
+            .AsSingle();
+
+        Container.Bind<IStopwatchService>()
+            .To<StopwatchService>()
+            .AsSingle();
+
+        Container.Bind<StopwatchPresenter>()
+            .AsSingle()
+            .NonLazy();
+
+        Container.Bind<StopwatchModel>()
+            .AsSingle();
     }
 }

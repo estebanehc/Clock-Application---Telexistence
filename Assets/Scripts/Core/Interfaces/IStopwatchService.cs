@@ -9,7 +9,6 @@ public interface IStopwatchService
 
     void Start();
     void Pause();
-    void Resume();
     void Reset();
     void Lap();
 }
