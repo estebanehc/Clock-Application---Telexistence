@@ -1,9 +1,9 @@
 using UnityEngine;
 using TMPro;
 
-public class ClockView : MonoBehaviour
+public class ClockView : MonoBehaviour, IClockView
 {
     [SerializeField] private TextMeshProUGUI timeText;
 
-    public void UpdateClockDisplay(string time) => timeText.text = time;
+    public void UpdateTimeDisplay(string time) => timeText.text = time;
 }

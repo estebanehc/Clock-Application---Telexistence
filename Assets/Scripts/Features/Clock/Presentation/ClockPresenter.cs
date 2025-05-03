@@ -1,39 +1,42 @@
-using UnityEngine;
 using UniRx;
-using Zenject;
+using System;
 
-public class ClockPresenter : MonoBehaviour
+public class ClockPresenter : IDisposable
 {
-    private ClockView clockView;
-    private IClockService clockService;
-    private ClockModel clockModel;
-    private CompositeDisposable disposables = new();
+    private readonly IClockView clockView;
+    private readonly IClockService clockService;
+    private readonly ClockModel clockModel;
+    private readonly CompositeDisposable disposables = new();
 
-    [Inject]
-    public void Construct(IClockService clockService, ClockModel clockModel)
+    public ClockPresenter(IClockView clockView, IClockService clockService, ClockModel clockModel)
     {
+        this.clockView = clockView;
         this.clockService = clockService;
         this.clockModel = clockModel;
+        
+        Start();
     }
 
     private void Start()
     {
-        clockView = GetComponent<ClockView>();
+        UpdateTime();
 
-        Observable.Interval(System.TimeSpan.FromSeconds(1))
+        Observable.Interval(TimeSpan.FromSeconds(1))
             .Subscribe(_ => UpdateTime())
             .AddTo(disposables);
 
         clockModel.CurrentTime
-            .Subscribe(time => clockView.UpdateClockDisplay(time.ToString("HH:mm:ss")))
+            .Subscribe(time => clockView.UpdateTimeDisplay(time.ToString("HH:mm:ss")))
             .AddTo(disposables);
     }
-
+    
     private void UpdateTime()
     {
         clockModel.CurrentTime.Value = clockService.CurrentTime;
     }
         
-    private void OnDestroy() => disposables.Dispose();
-
+    public void Dispose()
+    {
+        disposables.Dispose();
+    }
 }

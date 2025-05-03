@@ -1,26 +1,26 @@
 using System;
-using UnityEngine;
 using UniRx;
 using Zenject;
 
-public class TimerPresenter : MonoBehaviour
+public class TimerPresenter : IDisposable
 {
-    private TimerView timerView;
+    private ITimerView timerView;
     private ITimerService timerService;
     private readonly CompositeDisposable disposables = new();
     private bool isPaused = false;
 
-    [SerializeField] private AudioSource audioSource;
 
     [Inject]
-    public void Construct(ITimerService timerService)
+    public void Construct(ITimerView timerView, ITimerService timerService)
     {
+        this.timerView = timerView;
         this.timerService = timerService;
+
+        BindService();
     }
 
-    private void Start()
+    private void BindService()
     {   
-        timerView = GetComponent<TimerView>();
         timerView.InitializeDropdowns();
         HandleButtonInteractivity();
 
@@ -102,10 +102,7 @@ public class TimerPresenter : MonoBehaviour
         timerView.SetButtonsState(true, false, true);
         timerView.SetPauseButtonLabel("Pause");
         timerView.SetDropdownsInteractable(true);
-        if (audioSource != null && timerView.FinishedAudioClip != null)
-        {
-            audioSource.PlayOneShot(timerView.FinishedAudioClip);
-        }
+        timerView.PlayFinishedSound();
     }
 
     private void HandleButtonInteractivity()
@@ -120,5 +117,10 @@ public class TimerPresenter : MonoBehaviour
     private void OnDestroy()
     {
         disposables.Dispose();
+    }
+
+    public void Dispose()
+    {
+        throw new NotImplementedException();
     }
 }

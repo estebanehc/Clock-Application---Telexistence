@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<coverage version="1.0" date="2025-05-03_17-08-57" tag="">
+  <assembly name="Clock">
+    <class name="ClockModel" coveredlines="5" coverablelines="5" totallines="15" coveredbranches="0" totalbranches="0" />
+    <class name="ClockPresenter" coveredlines="20" coverablelines="21" totallines="42" coveredbranches="0" totalbranches="0" />
+    <class name="ClockService" coveredlines="1" coverablelines="1" totallines="6" coveredbranches="0" totalbranches="0" />
+    <class name="ClockView" coveredlines="0" coverablelines="1" totallines="9" coveredbranches="0" totalbranches="0" />
+  </assembly>
+  <assembly name="ClockTest">
+    <class name="ClockPresenterTests" coveredlines="45" coverablelines="45" totallines="96" coveredbranches="0" totalbranches="0" />
+    <class name="ClockServiceTests" coveredlines="8" coverablelines="8" totallines="21" coveredbranches="0" totalbranches="0" />
+  </assembly>
+  <assembly name="ClockTestPlayMode">
+    <class name="ClockViewTest" coveredlines="0" coverablelines="12" totallines="35" coveredbranches="0" totalbranches="0" />
+  </assembly>
+  <assembly name="StopWatch">
+    <class name="StopwatchModel" coveredlines="0" coverablelines="9" totallines="16" coveredbranches="0" totalbranches="0" />
+    <class name="StopwatchPresenter" coveredlines="22" coverablelines="27" totallines="52" coveredbranches="0" totalbranches="0" />
+    <class name="StopwatchService" coveredlines="0" coverablelines="41" totallines="69" coveredbranches="0" totalbranches="0" />
+    <class name="StopwatchView" coveredlines="48" coverablelines="60" totallines="99" coveredbranches="0" totalbranches="0" />
+  </assembly>
+  <assembly name="StopwatchTest">
+    <class name="StopwatchPresenterTest" coveredlines="43" coverablelines="45" totallines="86" coveredbranches="0" totalbranches="0" />
+  </assembly>
+  <assembly name="StopwatchTestPlayMode">
+    <class name="StopwatchViewTest" coveredlines="47" coverablelines="72" totallines="119" coveredbranches="0" totalbranches="0" />
+  </assembly>
+  <assembly name="Timer">
+    <class name="TimerModel" coveredlines="7" coverablelines="7" totallines="14" coveredbranches="0" totalbranches="0" />
+    <class name="TimerPresenter" coveredlines="2" coverablelines="70" totallines="124" coveredbranches="0" totalbranches="0" />
+    <class name="TimerService" coveredlines="35" coverablelines="49" totallines="79" coveredbranches="0" totalbranches="0" />
+    <class name="TimerView" coveredlines="0" coverablelines="46" totallines="84" coveredbranches="0" totalbranches="0" />
+  </assembly>
+  <assembly name="TimerTest">
+    <class name="TimerServiceTests" coveredlines="35" coverablelines="35" totallines="68" coveredbranches="0" totalbranches="0" />
+  </assembly>
+  <assembly name="TimerTestPlayMode">
+    <class name="TimerPlayModeTests" coveredlines="0" coverablelines="105" totallines="211" coveredbranches="0" totalbranches="0" />
+  </assembly>
+</coverage>

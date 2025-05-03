@@ -564,7 +564,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!224 &215860534
 RectTransform:
   m_ObjectHideFlags: 0
@@ -957,7 +957,7 @@ RectTransform:
   m_Children:
   - {fileID: 1187162695}
   m_Father: {fileID: 325096146}
-  m_RootOrder: 3
+  m_RootOrder: 4
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
@@ -1063,7 +1063,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!224 &325096146
 RectTransform:
   m_ObjectHideFlags: 0
@@ -1079,8 +1079,8 @@ RectTransform:
   - {fileID: 1679852278}
   - {fileID: 267403026}
   - {fileID: 2109272978}
-  - {fileID: 305992701}
   - {fileID: 1289089711}
+  - {fileID: 305992701}
   - {fileID: 1427623062}
   m_Father: {fileID: 706660205}
   m_RootOrder: 3
@@ -1608,10 +1608,9 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 528012132}
-  - component: {fileID: 528012131}
   - component: {fileID: 528012130}
   m_Layer: 0
-  m_Name: ClockPresenter
+  m_Name: ClockView
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -1630,18 +1629,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   timeText: {fileID: 240258090}
---- !u!114 &528012131
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 528012129}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 134cbae6fcfc249dfa9c2198022dcc55, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!4 &528012132
 Transform:
   m_ObjectHideFlags: 0
@@ -2770,11 +2757,10 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 872361689}
-  - component: {fileID: 872361688}
   - component: {fileID: 872361687}
   - component: {fileID: 872361690}
   m_Layer: 0
-  m_Name: TimerPresenter
+  m_Name: TimerView
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -2800,19 +2786,6 @@ MonoBehaviour:
   pauseButton: {fileID: 1299997915}
   resetButton: {fileID: 1785515821}
   finishedAudioClip: {fileID: 8300000, guid: c6a6828a6f1144e3aabeb6ca9701b3ee, type: 3}
---- !u!114 &872361688
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 872361686}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 6574129277db84745b0fb0cd52747cd5, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  audioSource: {fileID: 872361690}
 --- !u!4 &872361689
 Transform:
   m_ObjectHideFlags: 0
@@ -2837,9 +2810,9 @@ AudioSource:
   m_GameObject: {fileID: 872361686}
   m_Enabled: 1
   serializedVersion: 4
-  OutputAudioMixerGroup: {fileID: 0}
+  OutputAudioMixerGroup: {fileID: 24300002, guid: 700c243ef395d4caab932057b45a42b5, type: 2}
   m_audioClip: {fileID: 8300000, guid: c6a6828a6f1144e3aabeb6ca9701b3ee, type: 3}
-  m_PlayOnAwake: 1
+  m_PlayOnAwake: 0
   m_Volume: 1
   m_Pitch: 1
   Loop: 0
@@ -4167,7 +4140,7 @@ RectTransform:
   m_Children:
   - {fileID: 779876091}
   m_Father: {fileID: 325096146}
-  m_RootOrder: 4
+  m_RootOrder: 3
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
@@ -4773,6 +4746,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   stopwatchView: {fileID: 1737783982}
+  clockView: {fileID: 528012130}
+  timerView: {fileID: 872361687}
 --- !u!114 &1550920074
 MonoBehaviour:
   m_ObjectHideFlags: 0
