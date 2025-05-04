@@ -16,10 +16,10 @@ public interface ITimerView
     int Minutes { get; }
     int Seconds { get; }
 
-    void InitializeDropdowns();
     void SetRemainingTime(TimeSpan time);
     void SetButtonsState(bool start, bool pause, bool reset);
     void SetDropdownsInteractable(bool interactable);
     void SetPauseButtonLabel(string label);
-    void PlayFinishedSound();
+    void ShowButton(bool show);
+    void TimerFinished();
 }

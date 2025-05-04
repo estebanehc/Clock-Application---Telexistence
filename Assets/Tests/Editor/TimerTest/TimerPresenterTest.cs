@@ -69,7 +69,8 @@ public class TimerPresenterTest
         }
         public void SetPauseButtonLabel(string label) => PauseButtonText = label;
         public void SetDropdownsInteractable(bool interactable) => DropdownsInteractable = interactable;
-        public void PlayFinishedSound() { }
+        public void TimerFinished() { }
+        public void ShowButton(bool visible) { }
     }
 
     private class TestTimerService : ITimerService

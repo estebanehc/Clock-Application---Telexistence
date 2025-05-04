@@ -33,6 +33,7 @@ public class TimerView : MonoBehaviour, ITimerView
     {
         audioSource = GetComponent<AudioSource>();
         InitializeDropdowns();
+        ShowButton(true);
     }
     public void InitializeDropdowns()
     {
@@ -61,8 +62,10 @@ public class TimerView : MonoBehaviour, ITimerView
         remainingTimeText.text = $"{time.Hours:D2}:{time.Minutes:D2}:{time.Seconds:D2}";
     }
 
-    public void PlayFinishedSound()
+    public void TimerFinished()
     {
+        ShowButton(true);
+        SetButtonsState(true, false, false);
         audioSource.PlayOneShot(audioSource.clip);
     }
 
@@ -83,5 +86,11 @@ public class TimerView : MonoBehaviour, ITimerView
     public void SetPauseButtonLabel(string label)
     {
         pauseButton.GetComponentInChildren<TextMeshProUGUI>().text = label;
+    }
+
+    public void ShowButton(bool show)
+    {
+        startButton.gameObject.SetActive(show);
+        pauseButton.gameObject.SetActive(!show);
     }
 }

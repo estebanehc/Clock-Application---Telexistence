@@ -176,7 +176,7 @@ public class TimerViewTest
         AudioClip testClip = AudioClip.Create("test", 1, 1, 44100, false);
         audioSource.clip = testClip;
 
-        timerView.PlayFinishedSound();
+        timerView.TimerFinished();
 
         Assert.That(audioSource.clip, Is.EqualTo(testClip));
     }

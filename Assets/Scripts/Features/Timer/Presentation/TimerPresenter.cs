@@ -21,7 +21,6 @@ public class TimerPresenter : IDisposable
 
     private void BindService()
     {   
-        timerView.InitializeDropdowns();
         HandleButtonInteractivity();
 
         Observable
@@ -68,6 +67,7 @@ public class TimerPresenter : IDisposable
         timerView.SetButtonsState(false, true, true);
         timerView.SetPauseButtonLabel("Pause");
         timerView.SetDropdownsInteractable(false);
+        timerView.ShowButton(false);
         isPaused = false;
     }
 
@@ -94,6 +94,7 @@ public class TimerPresenter : IDisposable
         timerView.SetDropdownsInteractable(true);
         timerView.SetButtonsState(true, false, false);
         timerView.SetRemainingTime(TimeSpan.Zero);
+        timerView.ShowButton(true);
         HandleButtonInteractivity();
     }
 
@@ -102,7 +103,7 @@ public class TimerPresenter : IDisposable
         timerView.SetButtonsState(true, false, true);
         timerView.SetPauseButtonLabel("Pause");
         timerView.SetDropdownsInteractable(true);
-        timerView.PlayFinishedSound();
+        timerView.TimerFinished();
     }
 
     private void HandleButtonInteractivity()
@@ -114,13 +115,8 @@ public class TimerPresenter : IDisposable
         timerView.SetButtonsState(hasValidTime, false, false);
     }
 
-    private void OnDestroy()
-    {
-        disposables.Dispose();
-    }
-
     public void Dispose()
     {
-        throw new NotImplementedException();
+        disposables.Dispose();
     }
 }
