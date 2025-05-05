@@ -14,7 +14,7 @@ public class MainViewNavigator : MonoBehaviour
     [SerializeField] private GameObject stopwatchPanel;
 
 
-    void Start()
+    public void Start()
     {
         clockButton.onClick.AddListener(ClockUIHandle);
         timerButton.onClick.AddListener(TimerUIHandle);

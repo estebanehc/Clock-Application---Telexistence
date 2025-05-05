@@ -4,7 +4,6 @@ using TMPro;
 using UnityEngine.TestTools;
 using System.Collections;
 using UnityEngine.UI;
-using UniRx;
 using System;
 
 public class StopwatchViewTest
@@ -92,19 +91,15 @@ public class StopwatchViewTest
         stopwatchView.SetRunningState(true);
         yield return null;
 
-        // Press start button
         startButton.onClick.Invoke();
         yield return null;
 
-        // Add a lap by pressing lap button
         lapButton.onClick.Invoke();
         yield return null;
 
-        // Press stop button
         stopButton.onClick.Invoke();
         yield return null;
 
-        // Press reset button
         resetButton.onClick.Invoke();
         stopwatchView.ClearLaps();
         yield return null;

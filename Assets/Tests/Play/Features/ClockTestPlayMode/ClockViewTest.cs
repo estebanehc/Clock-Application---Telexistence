@@ -12,7 +12,6 @@ public class ClockViewTest
     [UnityTest]
     public IEnumerator UpdateTimeDisplay_SetsTextCorrectly()
     {
-        // Arrange
         var gameObject = new GameObject();
         clockView = gameObject.AddComponent<ClockView>();
         textMeshPro = gameObject.AddComponent<TextMeshProUGUI>();
@@ -21,15 +20,12 @@ public class ClockViewTest
 
         string expectedTime = "12:00";
 
-        // Act
         clockView.UpdateTimeDisplay(expectedTime);
         
         yield return null;
 
-        // Assert
         Assert.That(textMeshPro.text, Is.EqualTo(expectedTime));
 
-        // Cleanup
         Object.DestroyImmediate(gameObject);
     }
 }
