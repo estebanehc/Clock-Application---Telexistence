@@ -9,7 +9,6 @@ public class TimerPresenter : IDisposable
     private readonly CompositeDisposable disposables = new();
     private bool isPaused = false;
 
-
     [Inject]
     public void Construct(ITimerView timerView, ITimerService timerService)
     {
@@ -52,7 +51,6 @@ public class TimerPresenter : IDisposable
         timerService.Finished
             .Subscribe(_ => FinishedTimer())
             .AddTo(disposables);
-        
     }
 
     private void StartTimer()

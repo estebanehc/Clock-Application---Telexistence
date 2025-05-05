@@ -28,13 +28,13 @@ public class TimerView : MonoBehaviour, ITimerView
     public IObservable<Unit> PauseButtonClicked => pauseButton.OnClickAsObservable();
     public IObservable<Unit> ResetButtonClicked => resetButton.OnClickAsObservable();
 
-
     public void Start()
     {
         audioSource = GetComponent<AudioSource>();
         InitializeDropdowns();
         ShowButton(true);
     }
+    
     public void InitializeDropdowns()
     {
         hoursDropdown.ClearOptions();

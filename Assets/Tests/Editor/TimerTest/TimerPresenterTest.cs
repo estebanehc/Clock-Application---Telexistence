@@ -35,6 +35,67 @@ public class TimerPresenterTest
         Assert.That(timerView.PauseButtonText, Is.EqualTo("Pause"));
     }
 
+    [Test]
+    public void PauseTimer_WhenRunning_PausesTimerAndUpdatesUI()
+    {
+        timerService.isRunning.Value = true;
+        ((Subject<Unit>)timerView.PauseButtonClicked).OnNext(Unit.Default);
+
+        Assert.That(timerView.StartButtonInteractable, Is.False);
+        Assert.That(timerView.PauseButtonInteractable, Is.False);
+    }
+
+    [Test]
+    public void PauseTimer_WhenPaused_ResumesTimerAndUpdatesUI()
+    {
+        timerService.isRunning.Value = false;
+        ((Subject<Unit>)timerView.PauseButtonClicked).OnNext(Unit.Default);
+
+        Assert.That(timerView.StartButtonInteractable, Is.False);
+        Assert.That(timerView.PauseButtonInteractable, Is.False);
+    }
+
+    [Test]
+    public void ResetTimer_WhenRunning_ResetsTimerAndUpdatesUI()
+    {
+        timerService.isRunning.Value = true;
+        ((Subject<Unit>)timerView.ResetButtonClicked).OnNext(Unit.Default);
+
+        Assert.That(timerView.StartButtonInteractable, Is.False);
+        Assert.That(timerView.PauseButtonInteractable, Is.False);
+        Assert.That(timerView.ResetButtonInteractable, Is.False);
+    }
+
+    [Test]
+    public void TimerFinished_WhenTimerFinishes_UpdatesUI()
+    {
+        timerService.isRunning.Value = true;
+        ((Subject<Unit>)timerService.Finished).OnNext(Unit.Default);
+
+        Assert.That(timerView.StartButtonInteractable, Is.True);
+        Assert.That(timerView.PauseButtonInteractable, Is.False);
+        Assert.That(timerView.ResetButtonInteractable, Is.True);
+        Assert.That(timerView.DropdownsInteractable, Is.True);
+        Assert.That(timerView.PauseButtonText, Is.EqualTo("Pause"));
+    }
+
+    [Test]
+    public void Dispose_DisposesAllSubscriptions()
+    {
+        var testTime = TimeSpan.FromSeconds(10);
+        timerService.remainingTime.Value = testTime;
+        
+        presenter.Dispose();
+        
+        ((Subject<Unit>)timerView.StartButtonClicked).OnNext(Unit.Default);
+        ((Subject<Unit>)timerView.PauseButtonClicked).OnNext(Unit.Default);
+        ((Subject<Unit>)timerView.ResetButtonClicked).OnNext(Unit.Default);
+        ((Subject<Unit>)timerService.Finished).OnNext(Unit.Default);
+        
+        Assert.That(timerService.WasStartCalled, Is.False, "Timer should not start after disposal");
+        Assert.That(timerView.PauseButtonText, Is.Not.EqualTo("Resume"), "UI should not update after disposal");
+    }
+
     private class TestTimerView : ITimerView
     {
         public int Hours { get; set; }
@@ -76,9 +137,9 @@ public class TimerPresenterTest
     private class TestTimerService : ITimerService
     {
         public bool WasStartCalled { get; private set; }
-        private readonly ReactiveProperty<TimeSpan> remainingTime = new();
+        public readonly ReactiveProperty<TimeSpan> remainingTime = new();
         private readonly Subject<Unit> finished = new();
-        private readonly ReactiveProperty<bool> isRunning = new();
+        public readonly ReactiveProperty<bool> isRunning = new();
 
         public IReadOnlyReactiveProperty<TimeSpan> RemainingTime => remainingTime;
         public IReadOnlyReactiveProperty<bool> IsRunning => isRunning;

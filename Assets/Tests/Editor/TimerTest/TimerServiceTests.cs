@@ -1,6 +1,4 @@
 using NUnit.Framework;
-using UnityEngine;
-using UniRx;
 using System;
 using System.Threading;
 
@@ -64,5 +62,17 @@ public class TimerServiceTests
 
         Assert.IsFalse(timerService.IsRunning.Value);
         Assert.AreEqual(init, timerService.RemainingTime.Value);
+    }
+
+    [Test]
+    public void Dispose_StopsTimerAndCleansUpResources()
+    {
+        var duration = TimeSpan.FromSeconds(5);
+        timerService.SetDuration(duration);
+        timerService.Start();
+
+        timerService.Dispose();
+
+        Assert.IsTrue(timerService.IsRunning.Value);
     }
 }

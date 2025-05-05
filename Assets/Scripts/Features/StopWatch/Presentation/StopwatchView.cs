@@ -56,7 +56,6 @@ public class StopwatchView : MonoBehaviour, IStopwatchView
         resetButton.interactable = !isRunning && timeLabel.text != "00:00.000";
     }
 
-
     public void AddLap(TimeSpan lapTime)
     {
         lapCount++;
